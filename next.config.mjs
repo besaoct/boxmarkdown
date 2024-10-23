@@ -10,20 +10,6 @@ const nextConfig = {
         ],
       },
 
-      async rewrites() {
-        return [
-          {
-            source: '/:username/:projectSlug/:slug',
-            has: [
-              {
-                type: 'host',
-                value: 'boxmarkdown.com'
-              }
-            ],
-            destination: 'https://*.boxmarkdown.com/:projectSlug/:slug',
-          },
-        ];
-      },
 
 
       
