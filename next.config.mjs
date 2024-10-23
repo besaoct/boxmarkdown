@@ -13,21 +13,20 @@ const nextConfig = {
         ],
       },
 
-
-  async rewrites() {
-    return [
-      {
-        source: '/:username/:projectSlug/:slug',  // Handle subdomain routing path
-        has: [
+      async rewrites() {
+        return [
           {
-            type: 'host',
-            value: 'boxmarkdown.com',  // Match subdomain
+            source: '/legal/privacy-policy',  // This is the path on the subdomain
+            has: [
+              {
+                type: 'host',
+                value: 'main.boxmarkdown.com',  // This matches the 'main' subdomain
+              },
+            ],
+            destination: 'https://boxmarkdown.com/main/legal/privacy-policy',  // Redirect to the main site
           },
-        ],
-        destination: 'https://:username.boxmarkdown.com/:projectSlug/:slug',  // Route to dynamic folder structure
+        ];
       },
-    ];
-  },
       
 };
 
