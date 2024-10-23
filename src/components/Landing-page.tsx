@@ -177,14 +177,14 @@ const EnhancedLandingPage: FC = () => {
         </div>
           </div>
         </Link>
-        <nav className="ml-auto flex gap-4 sm:gap-6">
+        <nav className="ml-auto flex items-center gap-4 sm:gap-6">
         <button
-        className="relative w-10 h-6 bg-gray-300 dark:bg-neutral-800 rounded-full p-1 transition-colors duration-300 focus:outline-none"
+        className="relative w-14 h-9 bg-gray-300 dark:bg-neutral-800  p-1 transition-colors duration-300 focus:outline-none"
         onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
       >
         {/* The slider ball */}
         <div
-          className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white dark:bg-neutral-950 flex items-center justify-center transition-transform duration-300 border dark:border-neutral-500 p-1 transform ${
+          className={`absolute top-1 left-1 w-8 h-7  bg-white dark:bg-neutral-950 flex items-center justify-center transition-transform duration-300 border dark:border-neutral-500 p-1 transform ${
             theme === 'dark' ? 'translate-x-4' : ''
           }`}
         suppressHydrationWarning >
