@@ -70,13 +70,7 @@ const HoverVideo: React.FC = () => {
         className={`w-full h-auto dark:invert transition-opacity duration-500 ${(isHovering && isVideoReady) ? 'opacity-100 z-20' : 'opacity-100'}`}
         onCanPlay={handleCanPlay} 
         muted
-        controls={false}
-        
-      />
-
-{/* <source src="/hero-vid.mp4" type="video/mp4"  onCanPlay={handleCanPlay}  
-       /> */}
-      {/* </video> */}
+        controls={false}></video>
     </div>
   );
 };
