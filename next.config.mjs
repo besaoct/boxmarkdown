@@ -25,21 +25,7 @@ const nextConfig = {
         ];
       },
 
-      async redirects() {
-        return [
-          {
-            source: '/:username/:projectSlug/:slug',
-            has: [
-              {
-                type: 'host',
-                value: 'boxmarkdown.com'
-              }
-            ],
-            destination: 'https://:username.boxmarkdown.com/:projectSlug/:slug',
-            permanent: true, // 301 Permanent redirect
-          },
-        ];
-      },
+
       
 };
 
