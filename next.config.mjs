@@ -17,14 +17,14 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/:projectSlug/:slug',  // Handle subdomain routing path
+        source: '/:username/:projectSlug/:slug',  // Handle subdomain routing path
         has: [
           {
             type: 'host',
-            value: ':username.boxmarkdown.com',  // Match subdomain
+            value: 'boxmarkdown.com',  // Match subdomain
           },
         ],
-        destination: 'https://boxmarkdown.com/:username/:projectSlug/:slug',  // Route to dynamic folder structure
+        destination: 'https://:username.boxmarkdown.com/:projectSlug/:slug',  // Route to dynamic folder structure
       },
     ];
   },
