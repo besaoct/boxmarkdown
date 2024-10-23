@@ -42,7 +42,7 @@ const HoverVideo: React.FC = () => {
   };
 
   return (
-    <div className="p-4 w-full mt-24 max-w-full lg:max-w-4xl relative">
+    <div className="p-4 w-full mt-24 max-w-full lg:max-w-4xl lg:min-w-4xl bg-muted relative">
       {/* Image that shows until the video is loaded */}
       <img
         src="/hero.png"  // Replace with your placeholder image path
