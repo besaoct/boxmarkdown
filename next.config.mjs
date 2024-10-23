@@ -31,14 +31,14 @@ const nextConfig = {
       async redirects() {
         return [
           {
-            source: '/main/legal/privacy-policy',  
+            source: '/legal/privacy-policy',  // This is the path on the subdomain
             has: [
               {
                 type: 'host',
-                value: 'boxmarkdown.com',  
+                value: 'main.boxmarkdown.com',  // This matches the 'main' subdomain
               },
             ],
-            destination: 'https://main.boxmarkdown.com/legal/privacy-policy',  // Redirect to the main site
+            destination:'https://boxmarkdown.com/main/legal/privacy-policy',  // Redirect to the main site
             permanent: true,
           },
         ];
