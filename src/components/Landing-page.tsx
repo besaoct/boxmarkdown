@@ -11,11 +11,12 @@ import { CgEditMarkup } from "react-icons/cg";
 import { useTheme } from "next-themes"
 import WaveDivider from "@/components/common/WaveDivider"
 import { MoonIcon } from "@radix-ui/react-icons"
-import HoverVideo from "@/components/videos/HeroVideo"
+// import HoverVideo from "@/components/hero/HeroVideo"
 import { useRouter } from "next/navigation"
 import Plans from "./common/Plans"
 import { sendMessage } from "@/actions/contact/sendmail"
 import { toast } from "@/hooks/use-toast"
+import ImageSliderHero from "./hero/ImageSlider"
 
 // Type Definitions
 interface Feature {
@@ -145,6 +146,8 @@ const EnhancedLandingPage: FC = () => {
                 title:"Success",
                 description:"Message sent successfully!"
               })
+
+              setIsSubmitted(true)
          }
         }).catch(() => {
           toast({
@@ -242,8 +245,8 @@ const EnhancedLandingPage: FC = () => {
 
               <div>
               
-                <HoverVideo/>
-            
+                {/* <HoverVideo/> */}
+              <ImageSliderHero/>
               </div>
             </div>
           </div>

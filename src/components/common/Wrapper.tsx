@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from 'react'
-import {   Hexagon, Layers, LogOut, Menu, Moon, PackagePlus,  Settings, Sun, TrendingUp,  } from 'lucide-react'
+import {   Hexagon, Layers, LogOut, Menu, Moon, PackagePlus,  Settings, Sun, TrendingUp, User2,  } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -17,6 +17,7 @@ import Link from 'next/link'
 import { PiMarkdownLogo } from 'react-icons/pi'
 import { signOut } from 'next-auth/react'
 import { usePathname, useRouter } from 'next/navigation'
+import { MoonIcon } from '@radix-ui/react-icons'
 // import Image from 'next/image'
 
 export default function Dashboard({
@@ -65,14 +66,14 @@ function DashboardContent({
         {/* Logo */}
         <div className='p-2  font-extrabold w-full m-auto hidden md:flex text-xl gap-0 justify-start items-center'>
           
-        <Link href={'/dashboard'} className='border p-1 px-2  border-foreground text-base font-extrabold flex items-center gap-1'>
+        <Link href={'/'} className='border p-1 px-2  border-foreground text-base font-extrabold flex items-center gap-1'>
            <span>BOX</span> <PiMarkdownLogo className='text-xl' /> 
         </Link>
    
         </div>
         <nav className="space-y-2">
-          <Button onClick={()=>closeOnCurrent('/dashboard')} variant="ghost" className="w-full justify-start" asChild>
-            <Link href="/dashboard" className="flex items-center space-x-2">
+          <Button onClick={()=>closeOnCurrent('/')} variant="ghost" className="w-full justify-start" asChild>
+            <Link href="/" className="flex items-center space-x-2">
               <Hexagon className="h-5 w-5" />
               <span>Home</span>
             </Link>
@@ -114,7 +115,7 @@ function DashboardContent({
               <Menu className="h-6 w-6" />
             </Button>
             <div className='p-2 font-extrabold w-full m-auto  md:hidden flex text-xl gap-1 justify-start items-center'>
-            <Link href={'/dashboard'}  className='border p-1 px-2  border-foreground text-base font-extrabold flex items-center gap-1'>
+            <Link href={'/'}  className='border p-1 px-2  border-foreground text-base font-extrabold flex items-center gap-1'>
            <span>BOX</span> <PiMarkdownLogo className='text-xl' /> 
            </Link>
            </div>
@@ -122,12 +123,12 @@ function DashboardContent({
             <div className=" flex items-center justify-end w-full ">
 
               <button
-        className="relative w-10 h-6 bg-gray-300 dark:bg-neutral-800 rounded-full p-1 transition-colors duration-300 focus:outline-none"
+        className="relative w-12 h-8 bg-gray-300 dark:bg-neutral-800 rounded-sm p-1 transition-colors duration-300 focus:outline-none"
         onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
       >
         {/* The slider ball */}
         <div
-          className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white dark:bg-neutral-950 flex items-center justify-center transition-transform duration-300 transform ${
+          className={`absolute top-0.5 left-0.5 w-7 h-7 rounded-sm bg-white dark:bg-neutral-950 flex items-center justify-center transition-transform duration-300 transform ${
             theme === 'dark' ? 'translate-x-4' : ''
           }`}
         >
@@ -135,26 +136,26 @@ function DashboardContent({
           {theme === 'light' ? (
             <Sun className="h-4 w-4 text-orange-500" />
           ) : (
-            <Moon className="h-4 w-4 text-neutral-300" />
+            <MoonIcon className="h-4 w-4 text-neutral-300" />
           )}
         </div>
       </button>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="ml-3 flex items-center text-sm rounded-full focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-neutral-500 w-10 h-10">
+                  <Button variant="ghost" className="ml-3 flex items-center text-sm rounded-sm focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-neutral-500 w-8 h-8">
                     <span className="sr-only">Open user menu</span>
                     <Avatar className='w-8 h-8 border rounded-sm'>
                      {/* <Image width={100} height={100} src={user.image  ? user.image : '/logo.png'} alt='logo' className="mb-4" /> */}
-                      <AvatarImage src={user?.image ? user.image : ''} alt="" />
-                      <AvatarFallback>
-                         {user.name  ? user.name[0].toUpperCase() : 'B'}
+                      <AvatarImage className='rounded-sm' src={user?.image ? user.image : ''} alt="" />
+                      <AvatarFallback className='rounded-sm hover:rounded-sm'>
+                         <User2/>
                       </AvatarFallback>
                     </Avatar>
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
                   <DropdownMenuLabel className=''>
-                 <p className='line-clamp-1 w-fit break-all'> {user.isBasic ? 'Basic' : user.isPro ? 'Pro' : user.isMember ? 'Member' : 'Free'} Account</p>
+                 <p className='line-clamp-1 w-fit break-all'> My Account</p>
                     </DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem  onClick={()=>router.push('/settings')}>

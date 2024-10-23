@@ -10,7 +10,7 @@ const page = async () => {
   return (
     <>
       {userPlan === "Free" && <Plans userData={userData} />}
-
+   
       {userPlan === "Basic" && (
         <>
           <div className="border  shadow bg-muted">
@@ -94,6 +94,13 @@ const page = async () => {
           </div>
         </>
       )}
+   {userPlan === "Member" && (
+        <>
+     
+     Please contact <span className='text-teal-600 dark:text-teal-400'>team@horofy.com </span>to get desired plans or benefits.
+
+        </>
+          )}
     </>
   );
 };

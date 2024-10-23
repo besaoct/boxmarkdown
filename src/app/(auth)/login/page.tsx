@@ -15,7 +15,7 @@ interface pageProps {
 const page = async({searchParams: {redirectUrl}}:pageProps) => {
 
   const user = await currentUser()
-  if(user) redirect( redirectUrl ? `${BASE_URL}/${decodeURIComponent(redirectUrl)}` : `/dashboard`);
+  if(user) redirect( redirectUrl ? `${BASE_URL}/${decodeURIComponent(redirectUrl)}` : `/`);
 
   return (
  <>

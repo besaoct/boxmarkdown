@@ -2,6 +2,7 @@ import { loadRazorpay } from "@/lib/loadRazorpay";
 import { useState } from "react";
 import { Button } from "../ui/button";
 import { SiRazorpay } from "react-icons/si";
+import Link from "next/link";
 
 export default function SubscriptionButton({ planId, user }: { planId: string , user:any}) {
   const [loading, setLoading] = useState(false);
@@ -45,8 +46,15 @@ export default function SubscriptionButton({ planId, user }: { planId: string , 
   };
 
   return (
+<>
+
+     <div>
+     By continuing to pay, you agree to our <Link className="underline text-indigo-500 font-semibold hover:text-indigo-700" href={'https://boxmarkdown.com/main/legal/privacy-policy'}>Terms and Conditions</Link> and <Link className="underline text-indigo-500 font-semibold hover:text-indigo-700 " href={'https://boxmarkdown.com/main/legal/privacy-policy'}>Privacy Policy</Link>
+     </div>
     <Button onClick={handleSubscribe} disabled={loading} className="gap-1 items-center w-fit">
-     <SiRazorpay size={24} /> {loading ? "Processing..." : "Continue"}
+    {loading ? "Processing..." : "Continue"}  <SiRazorpay size={12} /> 
     </Button>
+
+</>
   );
 }

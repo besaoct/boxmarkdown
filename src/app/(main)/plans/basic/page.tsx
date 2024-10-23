@@ -10,7 +10,7 @@ const page = async() => {
   const userData= await getUserByUsername(user.username);
   
   if (userData?.isBasic || userData?.isPro || userData?.isMember) {
-    redirect('/dashboard')
+    redirect('/')
   }
 
   return (

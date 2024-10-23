@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes"
 import MountWrapper from "@/components/MountWrapper";
 import { Toaster } from "@/components/ui/toaster";
+import ProgressBarProvider from "@/components/ProgressbarProvider";
 
 const font = Montserrat({
   subsets: ["latin"],
@@ -31,11 +32,13 @@ export default function RootLayout({
         className={`${font.className} antialiased tabular-nums dark:bg-neutral-900 w-full `}
         cz-shortcut-listen="true"
       >
-            <ThemeProvider attribute="class" defaultTheme="dark">
+        <ProgressBarProvider>
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
              <MountWrapper>
                 {children}
              </MountWrapper>
             </ThemeProvider>
+        </ProgressBarProvider>
             <Toaster />
       </body>
     </html>

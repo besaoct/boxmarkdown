@@ -1,9 +1,8 @@
 import { cache } from "react";
 import { prisma } from "./prisma";
-import { currentUser, currentUserPlan, getUserByUsername } from "./auth";
+import { currentUser, currentUserPlan, getTotalAIgens, getUserByUsername } from "./auth";
 import { Prisma } from "@prisma/client";
 import { plans } from "./plan";
-
 
 
 export const getPageLimit = async()=>{
@@ -343,3 +342,32 @@ export const getPublicPage = cache(async ({ slug, projectSlug, username}:{slug: 
 
 // Define the return type of getPublicPage
 export type PublicPageType = Awaited<ReturnType<typeof getPublicPage>>;
+
+
+
+// private dashboard
+
+export const getDashboardData =async()=>{
+
+  const pagesData = await getAllPagesWithProject();
+  const projects = await getAllProjects();
+  const ActiveProjects =  await getAllProjectsWherePublishedPages();
+  const currentPlan = await currentUserPlan();
+  const PageLimit = await getPageLimit();
+  const aiGenLimit = await getAIGenLimit();
+  const totalAIGens = await getTotalAIgens();
+  const aiGenData = await getAIGenData();
+
+  return {
+    pagesData,
+    projects,
+    ActiveProjects,
+    currentPlan,
+    PageLimit,
+    aiGenLimit,
+    totalAIGens,
+    aiGenData
+  }
+}
+
+
