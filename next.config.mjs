@@ -10,7 +10,7 @@ const nextConfig = {
         ],
       },
 
-      async rewrites() {
+      async redirects() {
         return [
           {
             source: '/:username/:projectSlug/:slug',
@@ -21,10 +21,11 @@ const nextConfig = {
               }
             ],
             destination: 'https://:username.boxmarkdown.com/:projectSlug/:slug',
-            permanent: true, // Set to true if this should be a 301 redirect
+            permanent: true, // This makes it a 301 redirect
           },
         ];
-      },
+      }
+      
 };
 
 export default nextConfig;
