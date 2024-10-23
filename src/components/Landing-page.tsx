@@ -165,7 +165,7 @@ const EnhancedLandingPage: FC = () => {
         initial="hidden"
         animate="visible"
         variants={headerVariants}
-        className="fixed top-0 left-0 right-0 z-50 px-4 lg:px-6 h-16 flex items-center bg-background/80 backdrop-blur-sm border-b"
+        className="fixed top-0 left-0 right-0 z-50 px-4 h-16 flex items-center bg-background/80 backdrop-blur-sm border-b"
       >
         <Link href="#">
           <div className='p-2 font-extrabold w-full m-auto flex text-xl gap-1 justify-start items-center'>

@@ -47,7 +47,7 @@ const HoverVideo: React.FC = () => {
       <img
         src="/hero.png"  // Replace with your placeholder image path
         alt="Video placeholder"
-        className={`absolute dark:hidden inset-0 w-full h-full p-4 lg:max-w-4xl z-10 transition-opacity duration-500 ${(isHovering && isVideoReady) ? 'opacity-0' : 'opacity-100'}`}
+        className={`absolute dark:hidden inset-0 w-full h-full p-4 lg:max-w-4xl z-10 transition-opacity duration-500 ${(isHovering && isVideoReady) ? 'lg:opacity-0' : 'opacity-100'}`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onTouchStart={handleTouchStart}
@@ -56,7 +56,7 @@ const HoverVideo: React.FC = () => {
       <img
         src="/hero-white.png"  // Replace with your placeholder image path
         alt="Video placeholder"
-        className={`absolute hidden dark:block inset-0 w-full h-full p-4 lg:max-w-4xl z-10 transition-opacity duration-500 ${(isHovering && isVideoReady) ? 'opacity-10' : 'opacity-100'}`}
+        className={`absolute hidden dark:block inset-0 w-full h-full p-4 lg:max-w-4xl z-10 transition-opacity duration-500 ${(isHovering && isVideoReady) ? 'lg:opacity-0' : 'opacity-100'}`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onTouchStart={handleTouchStart}
