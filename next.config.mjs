@@ -36,9 +36,10 @@ const nextConfig = {
               }
             ],
             destination: 'https://:username.boxmarkdown.com/:projectSlug/:slug',
+            permanent: true, // 301 Permanent redirect
           },
         ];
-      }
+      },
       
 };
 
