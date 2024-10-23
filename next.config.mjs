@@ -27,6 +27,22 @@ const nextConfig = {
           },
         ];
       },
+
+      async redirects() {
+        return [
+          {
+            source: '/main/legal/privacy-policy',  
+            has: [
+              {
+                type: 'host',
+                value: 'boxmarkdown.com',  
+              },
+            ],
+            destination: 'https://main.boxmarkdown.com/legal/privacy-policy',  // Redirect to the main site
+            permanent: true,
+          },
+        ];
+      },
       
 };
 
