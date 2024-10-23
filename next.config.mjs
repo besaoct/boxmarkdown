@@ -20,7 +20,7 @@ const nextConfig = {
                 value: 'boxmarkdown.com'
               }
             ],
-            destination: 'https://:username.boxmarkdown.com/:projectSlug/:slug',
+            destination: 'https://*.boxmarkdown.com/:projectSlug/:slug',
           },
         ];
       },
