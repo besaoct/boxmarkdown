@@ -24,11 +24,8 @@ const page = async({params:{a,b,}}:pageProps) => {
     return notFound()
   }
   
-  const [subdomain, domain]= host.split('.'); 
-  if (domain!==BASE_DOMAIN) {
-    return notFound()
-  }
-
+  const subdomain = host.split('.')[0]; 
+ 
   if (!subdomain) {
     return notFound()
   }
