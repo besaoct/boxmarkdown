@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, useEffect, useRef, useState } from "react"
+import { FC, useEffect, useRef, useState, useTransition } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -14,6 +14,8 @@ import { MoonIcon } from "@radix-ui/react-icons"
 import HoverVideo from "@/components/videos/HeroVideo"
 import { useRouter } from "next/navigation"
 import Plans from "./common/Plans"
+import { sendMessage } from "@/actions/contact/sendmail"
+import { toast } from "@/hooks/use-toast"
 
 // Type Definitions
 interface Feature {
@@ -85,6 +87,10 @@ const EnhancedLandingPage: FC = () => {
   const [activeSection, setActiveSection] = useState<string>("")
   const sectionsRef = useRef<Record<string, HTMLElement | null>>({})
 
+
+  const [isPending, startTransition] = useTransition();
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   const router = useRouter();
    
   useEffect(() => {
@@ -114,6 +120,43 @@ const EnhancedLandingPage: FC = () => {
 
   }, [])
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+    const form = e.target as HTMLFormElement;
+    const name = (form.elements.namedItem('name') as HTMLInputElement).value;
+    const email = (form.elements.namedItem('email') as HTMLInputElement).value;
+    const message = (form.elements.namedItem('message') as HTMLTextAreaElement).value;
+  
+
+   startTransition(() => {
+      sendMessage({
+          name,
+          email,  
+          message,
+        })
+        .then((data) => {
+  
+         if (data.success) {
+              // If successful, you can reset the form or show a success message
+              form.reset();
+              console.log('Message sent successfully!');
+              toast({
+                title:"Success",
+                description:"Message sent successfully!"
+              })
+         }
+        }).catch(() => {
+          toast({
+            title:"Error",
+            description:"Something went wrong!"
+          })
+        })
+
+      })
+  
+  };
+  
 
   return (
     <div className="flex flex-col min-h-screen w-full mx-auto">
@@ -274,75 +317,81 @@ const EnhancedLandingPage: FC = () => {
 
         {/* Contact Section */}
         <motion.section
-          ref={(el:any) => (sectionsRef.current.contact = el)}
-          id="contact"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={staggerChildren}
-          className="w-full py-12 md:py-24 lg:py-32 bg-muted"
+      ref={(el: any) => (sectionsRef.current.contact = el)}
+      id="contact"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      variants={staggerChildren}
+      className="w-full py-12 md:py-24 lg:py-32 bg-muted"
+    >
+      <div className="px-4 md:px-6 max-w-3xl mx-auto">
+        <motion.h2 
+          variants={fadeIn} 
+          className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-12"
         >
-          <div className="px-4 md:px-6 max-w-3xl mx-auto">
-            <motion.h2 
-              variants={fadeIn} 
-              className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-12"
-            >
-              Contact Us
-            </motion.h2>
-            <motion.div 
-              variants={fadeIn} 
-              className="max-w-md mx-auto"
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <Card>
-                <CardContent className="pt-6">
-                  <form className="space-y-6">
-                    <div className="space-y-2">
-                      <label htmlFor="name" className="text-sm font-medium">
-                        Name
-                      </label>
-                      <input
-                        id="name"
-                        type="text"
-                        required
-                        className="w-full px-3 py-2 border focus:outline-none focus:ring-1 focus:ring-muted"
-                        placeholder="Enter your name"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="email" className="text-sm font-medium">
-                        Email
-                      </label>
-                      <input
-                        id="email"
-                        type="email"
-                        required
-                        className="w-full px-3 py-2 border focus:outline-none focus:ring-1 focus:ring-muted"
-                        placeholder="Enter your email"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="message" className="text-sm font-medium">
-                        Message
-                      </label>
-                      <textarea
-                        id="message"
-                        required
-                        className="w-full px-3 py-2 border focus:outline-none focus:ring-1 focus:ring-muted"
-                        placeholder="Enter your message"
-                        rows={4}
-                      />
-                    </div>
-                    <Button type="submit" className="w-full">
-                      Send Message
-                    </Button>
-                  </form>
-                </CardContent>
-              </Card>
-            </motion.div>
-          </div>
-        </motion.section>
+          Contact Us
+        </motion.h2>
+        <motion.div 
+          variants={fadeIn} 
+          className="max-w-md mx-auto"
+          whileHover={{ scale: 1.02 }}
+          transition={{ type: "spring", stiffness: 300 }}
+        >
+          <Card>
+            <CardContent className="pt-6">
+              {!isSubmitted ? (
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="space-y-2">
+                    <label htmlFor="name" className="text-sm font-medium">
+                      Name
+                    </label>
+                    <input
+                      id="name"
+                      type="text"
+                      required
+                      className="w-full px-3 py-2 border focus:outline-none focus:ring-1 focus:ring-muted"
+                      placeholder="Enter your name"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="email" className="text-sm font-medium">
+                      Email
+                    </label>
+                    <input
+                      id="email"
+                      type="email"
+                      required
+                      className="w-full px-3 py-2 border focus:outline-none focus:ring-1 focus:ring-muted"
+                      placeholder="Enter your email"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="message" className="text-sm font-medium">
+                      Message
+                    </label>
+                    <textarea
+                      id="message"
+                      required
+                      className="w-full px-3 py-2 border focus:outline-none focus:ring-1 focus:ring-muted"
+                      placeholder="Enter your message"
+                      rows={4}
+                    />
+                  </div>
+                  <Button type="submit" className="w-full" disabled={isPending}>
+                    {isPending ? 'Sending...' : 'Send Message'}
+                  </Button>
+                </form>
+              ) : (
+                <p className="text-center text-green-600">
+                  Thank you! Your message has been sent.
+                </p>
+              )}
+            </CardContent>
+          </Card>
+        </motion.div>
+      </div>
+    </motion.section>
       </main>
 
       {/* Footer */}
