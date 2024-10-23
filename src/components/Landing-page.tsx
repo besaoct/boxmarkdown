@@ -341,10 +341,10 @@ const EnhancedLandingPage: FC = () => {
           whileHover={{ scale: 1.02 }}
           transition={{ type: "spring", stiffness: 300 }}
         >
-          <Card>
-            <CardContent className="pt-6">
+          <Card className="shadow-none">
+            <CardContent className="pt-4 shadow-sm">
               {!isSubmitted ? (
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="space-y-2">
                     <label htmlFor="name" className="text-sm font-medium">
                       Name
