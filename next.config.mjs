@@ -24,7 +24,7 @@ const nextConfig = {
             value: ':username.boxmarkdown.com',  // Match subdomain
           },
         ],
-        destination: '/:username/:projectSlug/:slug',  // Route to dynamic folder structure
+        destination: 'https://boxmarkdown.com/:username/:projectSlug/:slug',  // Route to dynamic folder structure
       },
     ];
   },
