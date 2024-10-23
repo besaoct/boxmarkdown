@@ -46,7 +46,7 @@ const ImageSliderHero = () => {
         {images.map((_, index) => (
           <div
             key={index}
-            className={`h-2 w-2 rounded-full ${currentIndex === index ? 'bg-white' : 'bg-gray-400'}`}
+            className={`h-2 w-2 rounded-full ${currentIndex === index ? 'bg-rose-600' : 'bg-gray-400'}`}
             onClick={() => setCurrentIndex(index)}
           ></div>
         ))}
