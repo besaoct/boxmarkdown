@@ -65,7 +65,7 @@ const HoverVideo: React.FC = () => {
       {/* Video that plays only on hover if it's loaded */}
       <video
         ref={videoRef}
-        src="/hero-vid.mp4"
+        src="/heroVid.mp4"
         preload='auto'
         className={`w-full h-auto dark:invert transition-opacity duration-500 ${(isHovering && isVideoReady) ? 'opacity-100 z-20' : 'opacity-100'}`}
         onCanPlay={handleCanPlay} 
