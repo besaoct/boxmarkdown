@@ -56,7 +56,7 @@ const HoverVideo: React.FC = () => {
       <img
         src="/hero-white.png"  // Replace with your placeholder image path
         alt="Video placeholder"
-        className={`absolute hidden dark:block inset-0 w-full h-full p-4 lg:max-w-4xl z-10 transition-opacity duration-500 ${(isHovering && isVideoReady) ? 'opacity-0' : 'opacity-100'}`}
+        className={`absolute hidden dark:block inset-0 w-full h-full p-4 lg:max-w-4xl z-10 transition-opacity duration-500 ${(isHovering && isVideoReady) ? 'opacity-10' : 'opacity-100'}`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onTouchStart={handleTouchStart}
@@ -65,18 +65,18 @@ const HoverVideo: React.FC = () => {
       {/* Video that plays only on hover if it's loaded */}
       <video
         ref={videoRef}
-        // src="/hero-vid.mp4"
+        src="/hero-vid.mp4"
         preload='auto'
         className={`w-full h-auto dark:invert transition-opacity duration-500 ${(isHovering && isVideoReady) ? 'opacity-100 z-20' : 'opacity-100'}`}
         onCanPlay={handleCanPlay} 
         muted
         controls={false}
         
-      >
+      />
 
-<source src="/hero-vid.mp4" type="video/mp4"  onCanPlay={handleCanPlay}  // Set the video as ready when it can play
-       />
-      </video>
+{/* <source src="/hero-vid.mp4" type="video/mp4"  onCanPlay={handleCanPlay}  
+       /> */}
+      {/* </video> */}
     </div>
   );
 };
