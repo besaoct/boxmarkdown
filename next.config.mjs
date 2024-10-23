@@ -38,7 +38,7 @@ const nextConfig = {
                 value: 'main.boxmarkdown.com',  // This matches the 'main' subdomain
               },
             ],
-            destination:'https://boxmarkdown.com/main/legal/privacy-policy',  // Redirect to the main site
+            destination:'https://main.boxmarkdown.com/legal/privacy-policy',  // Redirect to the main site
             permanent: true,
           },
         ];
