@@ -57,7 +57,7 @@ export default async function Home() {
     // Data for the summary cards
     const summaryData = [
       { title: "Total Pages", value: pagesData?.length || 0, desc: `${PagesLeft<=0?'0':PagesLeft} ${currentPlan} pages left`, icon: Layers },
-      { title: "Total AI Generations", value: totalAIGens , desc: `${AiGensLeft<=0?'0':AiGensLeft} generations left; renewal in ${aiGenData?.daysLeftCount} days.`, icon: Bot },
+      { title: "Total AI Generations", value: totalAIGens , desc: `${AiGensLeft<=0?'0':AiGensLeft} generations left; ${aiGenData?.daysLeftCount  && `renewal in ${aiGenData?.daysLeftCount} days.`}`, icon: Bot },
       { title: "Active Projects", value: ActiveProjects?.length || 0, desc:`Of ${projects?.length||0} total projects`, icon: Box },
     ];
 

@@ -71,8 +71,6 @@ function DashboardContent({
    
         </div>
         <nav className="space-y-2">
-
-
           <Button onClick={()=>closeOnCurrent('/dashboard')} variant="ghost" className="w-full justify-start" asChild>
             <Link href="/dashboard" className="flex items-center space-x-2">
               <Hexagon className="h-5 w-5" />
@@ -110,7 +108,7 @@ function DashboardContent({
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
         <header className="bg-white dark:bg-neutral-900 shadow-sm z-50">
-          <div className="w-full mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+          <div className="w-full mx-auto py-2 px-4 lg:px-8 flex justify-between items-center">
            
             <Button variant="ghost" className="md:hidden p-0 m-0 hover:bg-transparent " onClick={() => setSidebarOpen(!sidebarOpen)}>
               <Menu className="h-6 w-6" />
@@ -145,7 +143,7 @@ function DashboardContent({
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" className="ml-3 flex items-center text-sm rounded-full focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-neutral-500 w-10 h-10">
                     <span className="sr-only">Open user menu</span>
-                    <Avatar className='w-8 h-8 border'>
+                    <Avatar className='w-8 h-8 border rounded-sm'>
                      {/* <Image width={100} height={100} src={user.image  ? user.image : '/logo.png'} alt='logo' className="mb-4" /> */}
                       <AvatarImage src={user?.image ? user.image : ''} alt="" />
                       <AvatarFallback>
@@ -178,7 +176,7 @@ function DashboardContent({
         </header>
 
         {/* Main content */}
-        <main className="flex-1 bg-gray-100 dark:bg-neutral-950 mx-auto w-full  overflow-y-auto overflow-x-hidden  p-6">
+        <main className="flex-1 bg-gray-100 dark:bg-neutral-950 mx-auto w-full  overflow-y-auto overflow-x-hidden  p-4">
            {children}
         </main>
       </div>
