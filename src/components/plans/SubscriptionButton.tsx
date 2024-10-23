@@ -45,7 +45,7 @@ export default function SubscriptionButton({ planId, user }: { planId: string , 
   };
 
   return (
-    <Button onClick={handleSubscribe} disabled={loading} className="gap-1 items-center">
+    <Button onClick={handleSubscribe} disabled={loading} className="gap-1 items-center w-fit">
      <SiRazorpay size={24} /> {loading ? "Processing..." : "Continue"}
     </Button>
   );
