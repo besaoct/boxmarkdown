@@ -17,11 +17,10 @@ const nextConfig = {
             has: [
               {
                 type: 'host',
-                value: 'boxmarkdown.com'
+                value: ':username.boxmarkdown.com'
               }
             ],
-            destination: 'https://:username.boxmarkdown.com/:projectSlug/:slug',
-            permanent: true, // This makes it a 301 redirect
+            destination: 'https://boxmarkdown.com/:username/:projectSlug/:slug',
           },
         ];
       }
