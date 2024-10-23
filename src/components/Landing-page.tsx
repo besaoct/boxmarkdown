@@ -409,13 +409,13 @@ const EnhancedLandingPage: FC = () => {
 </div>
         <nav className="sm:ml-auto flex gap-4 sm:gap-6">
           <Link 
-            href="#" 
+            href="https://boxmarkdown.com/main/legal/terms" 
             className="text-xs hover:underline underline-offset-4 transition-colors text-muted-foreground"
           >
             Terms of Service
           </Link>
           <Link 
-            href="#" 
+            href="https://boxmarkdown.com/main/legal/privacy-policy" 
             className="text-xs hover:underline underline-offset-4 transition-colors text-muted-foreground"
           >
             Privacy

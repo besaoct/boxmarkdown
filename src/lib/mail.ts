@@ -1,7 +1,7 @@
 
 import { Resend } from "resend";
 
-const ResendAPIKey = process.env.RESEND_API_KEY as string ?? 'xxxxxxxxxxxxxxxxx'
+const ResendAPIKey = process.env.RESEND_API_KEY as string;
 
 const resend = new Resend(ResendAPIKey);
 
@@ -12,7 +12,7 @@ export const sendContactEmail = async ({email, name, message}:{
   }) => {
     await resend.emails.send({
       from: "team@horofy.com",
-      to: email,
+      to: "xhafin@gmail.com",
       subject: `BOXmarkdown | You got a message from ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
