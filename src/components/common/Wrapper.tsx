@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {   Hexagon, Layers, LogOut, Menu, Moon, PackagePlus,  Settings, Sun, TrendingUp,  } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import {
@@ -16,7 +16,7 @@ import { useTheme } from "next-themes"
 import Link from 'next/link'
 import { PiMarkdownLogo } from 'react-icons/pi'
 import { signOut } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 // import Image from 'next/image'
 
 export default function Dashboard({
@@ -42,7 +42,21 @@ function DashboardContent({
   }>) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const { theme, setTheme } = useTheme()
-  const router = useRouter()
+  const router = useRouter();
+  const pathname = usePathname();
+
+      // Close the menu when clicking the current page link
+      const closeOnCurrent = (href: string) => {
+        if (pathname === href) {
+          setSidebarOpen(false);
+        }
+      };
+ 
+  // UseEffect to close the sidebar when pathname changes
+  useEffect(() => {
+    setSidebarOpen(false);
+}, [pathname]); 
+
   return (
     <div className="h-screen flex bg-gray-100 dark:bg-neutral-900 text-sm" >
       {/* Sidebar */}
@@ -59,25 +73,25 @@ function DashboardContent({
         <nav className="space-y-2">
 
 
-          <Button variant="ghost" className="w-full justify-start" asChild>
+          <Button onClick={()=>closeOnCurrent('/dashboard')} variant="ghost" className="w-full justify-start" asChild>
             <Link href="/dashboard" className="flex items-center space-x-2">
               <Hexagon className="h-5 w-5" />
               <span>Home</span>
             </Link>
           </Button>
-          <Button variant="ghost" className="w-full justify-start" asChild>
+          <Button onClick={()=>closeOnCurrent('/create')} variant="ghost" className="w-full justify-start" asChild>
             <Link href="/create" className="flex items-center space-x-2">
               <PackagePlus className="h-5 w-5" />
               <span>Create</span>
             </Link>
           </Button>
-          <Button variant="ghost" className="w-full justify-start" asChild>
+          <Button onClick={()=>closeOnCurrent('/pages')} variant="ghost" className="w-full justify-start" asChild>
             <Link href="/pages" className="flex items-center space-x-2">
               <Layers className="h-5 w-5" />
               <span>Pages</span>
             </Link>
           </Button>
-          <Button variant="ghost" className="w-full justify-start" asChild>
+          <Button onClick={()=>closeOnCurrent('/settings')} variant="ghost" className="w-full justify-start" asChild>
             <Link href="/settings" className="flex items-center space-x-2">
               <Settings className="h-5 w-5" />
               <span>Settings</span>
@@ -85,7 +99,13 @@ function DashboardContent({
           </Button>
         </nav>
       </aside>
-
+  {/* Overlay */}
+  {sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black opacity-70 z-40"
+          onClick={() => setSidebarOpen(false)} // Close sidebar when clicking on the overlay
+        />
+      )}
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}

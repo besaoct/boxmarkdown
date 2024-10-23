@@ -77,7 +77,7 @@ const handleEditClick = () => {
             <label className="font-medium w-full max-w-48">Name</label>
             <Input
               type="text"
-              defaultValue={userData?.name || ''}
+              // defaultValue={userData?.name || ''}
               value={name}
               onChange={(e)=>setName(e.target.value)}
               readOnly={!isEditing}
@@ -100,7 +100,7 @@ const handleEditClick = () => {
             <label className="block font-medium w-full max-w-48">Username</label>
             <Input
               type="text"
-              defaultValue={userData?.username || ''}
+              // defaultValue={userData?.username || ''}
               value={username}
               onChange={(e)=>setUserName(e.target.value)}
               readOnly={!isEditing}

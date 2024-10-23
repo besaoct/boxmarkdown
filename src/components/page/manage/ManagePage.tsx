@@ -127,7 +127,7 @@ const handleDeletePage = (id:string) => {
       length={150}
       ellipsis={true}
       showCopied={<span style={{ color: 'green' }}>Text Copied!</span>}
-      showDefault={<span className='text-white p-2 bg-cyan-600'>Share Now</span>}
+      showDefault={<span className='text-white p-2 bg-cyan-600 whitespace-nowrap'>Share Now</span>}
     />
       {/* Render the SettingsDialog only when isSettingsOpen is true */}
       {isSettingsOpen && (
