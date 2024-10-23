@@ -1,6 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 
+
+
+    images: {
+        remotePatterns: [
+          {
+            protocol: 'https',
+            hostname: '*',
+            port: '',
+          },
+        ],
+      },
+
+
   async rewrites() {
     return [
       {
@@ -15,17 +28,6 @@ const nextConfig = {
       },
     ];
   },
-
-
-    images: {
-        remotePatterns: [
-          {
-            protocol: 'https',
-            hostname: '*',
-            port: '',
-          },
-        ],
-      }
       
 };
 
