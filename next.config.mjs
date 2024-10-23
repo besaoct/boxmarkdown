@@ -10,7 +10,7 @@ const nextConfig = {
         ],
       },
 
-      async redirects() {
+      async rewrites() {
         return [
           {
             source: '/:username/:projectSlug/:slug',
