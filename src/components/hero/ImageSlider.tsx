@@ -36,6 +36,7 @@ const ImageSliderHero = () => {
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {images.map((image, index) => (
+           // eslint-disable-next-line @next/next/no-img-element 
           <img key={index} src={image} alt={`Slide ${index}`} className="w-full h-auto dark:invert" />
         ))}
       </div>
