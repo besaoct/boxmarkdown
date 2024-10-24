@@ -230,7 +230,7 @@ const EnhancedLandingPage: FC = () => {
                   </span>
                 </div>
                 <p className="mx-auto text-muted-foreground text-sm md:text-lg max-w-2xl">
-                  BOXmarkdown lets you generate beautiful web pages using AI-powered markdown creation. Edit, preview, and publish with ease.
+                  BOXmarkdown lets you generate standalone web pages using AI-powered markdown creation. Edit, preview, and publish with ease.
                 </p>
               </motion.div>
               <motion.div 

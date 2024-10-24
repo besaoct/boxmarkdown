@@ -18,7 +18,7 @@ const Info = ({info}:any) => {
     const  isDisplayNameToggleMode = (info && (info.displayName || info.toggleDarkmode))
     const  isOnlyToggleMode = (info && ((info.toggleDarkmode) && !info.displayName ))
     const  isOnlyDisplayName = (info && ((info.toggleDarkmode) && info.displayName ))
-    const showAuthor = info && info.showAuthor && info.user
+    const showAuthor = info && info.showAuthor && info?.user
   return (
   <>
         {info && (info.displayName || info.toggleDarkmode) && (
