@@ -2,7 +2,6 @@ import { notFound, permanentRedirect } from 'next/navigation';
 import { headers } from 'next/headers';
 import { BASE_DOMAIN, BASE_METHOD } from '@/routes';
 import { getPublicPage } from '@/lib/data';
-import { getPlanLabel } from '@/lib/plan';
 import PublicPage from '@/components/page/view/PublicPage';
 
 interface pageProps {
@@ -22,10 +21,8 @@ const page = async({params:{a, b, c}}:pageProps) => {
   if (!publicPageData) {
     return notFound()
   }
-  const plan = getPlanLabel(publicPageData.user);
-
-
-  if (plan==='Pro' || plan==='Member') {
+ 
+  if (publicPageData.user.isPro || publicPageData.user.isMember) {
     if (host.endsWith(`.${BASE_DOMAIN}`)) {
       return notFound()
     } else permanentRedirect(`${BASE_METHOD}://${a}.${BASE_DOMAIN}/${b}/${c}`)

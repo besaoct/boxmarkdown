@@ -4,7 +4,6 @@ import { notFound } from 'next/navigation';
 import PublicPage from '@/components/page/view/PublicPage';
 import { headers } from 'next/headers'
 import { BASE_DOMAIN } from '@/routes';
-import { getPlanLabel } from '@/lib/plan';
 
 interface pageProps {
   params:{
@@ -36,15 +35,13 @@ const page = async({params:{a,b,}}:pageProps) => {
     return notFound()
   }
 
-  const plan = getPlanLabel(publicPageData.user);
-
-  if (!(plan==='Pro' || plan==='Member')) {
-    return notFound()
+  if (publicPageData.user.isPro || publicPageData.user.isMember) {
+    return (
+      <PublicPage pageData={publicPageData}/>
+    )
   }
 
-  return (
-  <PublicPage pageData={publicPageData}/>
-  )
+  return notFound()
 }
 
 export default page
