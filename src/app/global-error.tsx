@@ -1,5 +1,6 @@
 'use client'
 
+import { BASE_DOMAIN, BASE_METHOD } from "@/routes"
 import Link from "next/link"
 
  
@@ -19,7 +20,7 @@ export default function GlobalError({
   <p className="text-lg">Not quite what you were craving? No worries!</p>
   <Link href={''} onClick={() => reset()} className='underline text-indigo-500 font-semibold hover:text-indigo-700'>Give it another shot!</Link>
   <span className="mx-1">or</span>
-  <Link href={'/'} className='underline text-indigo-500 font-semibold hover:text-indigo-700'>Get back to your happy place! 🏡</Link>
+  <Link href={`${BASE_METHOD}://${BASE_DOMAIN}`} className='underline text-indigo-500 font-semibold hover:text-indigo-700'>Get back to your happy place! 🏡</Link>
 </div>
       </body>
     </html>
