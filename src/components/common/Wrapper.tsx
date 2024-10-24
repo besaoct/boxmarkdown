@@ -123,12 +123,12 @@ function DashboardContent({
             <div className=" flex items-center justify-end w-full ">
 
               <button
-        className="relative w-12 h-8 bg-gray-300 dark:bg-neutral-800 rounded-sm p-1 transition-colors duration-300 focus:outline-none"
+        className="relative w-12 h-8 bg-gray-300 dark:bg-neutral-800 p-1 transition-colors duration-300 focus:outline-none"
         onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
       >
         {/* The slider ball */}
         <div
-          className={`absolute top-0.5 left-0.5 w-7 h-7 rounded-sm bg-white dark:bg-neutral-950 flex items-center justify-center transition-transform duration-300 transform ${
+          className={`absolute top-0.5 left-0.5 w-7 h-7 bg-white dark:bg-neutral-950 flex items-center justify-center transition-transform duration-300 transform ${
             theme === 'dark' ? 'translate-x-4' : ''
           }`}
         >
@@ -142,12 +142,12 @@ function DashboardContent({
       </button>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="ml-3 flex items-center text-sm rounded-sm focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-neutral-500 w-8 h-8">
+                  <Button variant="ghost" className="ml-3 flex items-center text-sm  focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-neutral-500 w-8 h-8">
                     <span className="sr-only">Open user menu</span>
-                    <Avatar className='w-8 h-8 border rounded-sm'>
+                    <Avatar className='w-8 h-8 border rounded-none'>
                      {/* <Image width={100} height={100} src={user.image  ? user.image : '/logo.png'} alt='logo' className="mb-4" /> */}
-                      <AvatarImage className='rounded-sm' src={user?.image ? user.image : ''} alt="" />
-                      <AvatarFallback className='rounded-sm hover:rounded-sm'>
+                      <AvatarImage className='' src={user?.image ? user.image : ''} alt="" />
+                      <AvatarFallback className='rounded-none'>
                          <User2/>
                       </AvatarFallback>
                     </Avatar>
