@@ -37,7 +37,7 @@ export const plans ={
 );
 
   export const getPlanLabel = ({user}:any) => (
-    user.isBasic ? 'Basic' : user.isPro ? 'Pro' : user.isMember ? 'Member' : 'Free'
+     user.isBasic ? 'Basic' : user.isPro ? 'Pro' : user.isMember ? 'Member' : 'Free'
 );
 
   export const getPlanMonthlyPrice = ({user}:any) => (

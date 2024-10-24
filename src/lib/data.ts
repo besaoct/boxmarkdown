@@ -323,6 +323,9 @@ export const getPublicPage = cache(async ({ slug, projectSlug, username}:{slug: 
             select:{
               name:true,
               username:true,
+              isBasic:true,
+              isPro:true,
+              isMember:true,
             }
           },
 
@@ -332,6 +335,8 @@ export const getPublicPage = cache(async ({ slug, projectSlug, username}:{slug: 
         
     } 
   );
+
+      
       return data;
     } catch {
       return null;

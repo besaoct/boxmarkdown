@@ -39,7 +39,7 @@ const page = async () => {
                   <li>Access to 100 Markdown pages</li>
                   <li>1000 AI generations per month</li>
                   <li>Premium Page Editor with advanced features</li>
-                  <li>Custom domain support for branding</li>
+                  <li>Subdomain Support!</li>
                   <li>Priority customer support</li>
                 </ul>
                 <Link
@@ -68,7 +68,7 @@ const page = async () => {
                   <li>Access to 100 Markdown pages</li>
                   <li>1000 AI generations per month</li>
                   <li>Premium Page Editor with advanced features</li>
-                  <li>Custom domain support for branding</li>
+                  <li>Subdomain Support!</li>
                   <li>Priority customer support</li>
                 </ul>
               </div>

@@ -50,7 +50,7 @@ interface PricingPlan {
       { 
         title: "Pro", 
         price: "₹99", 
-        features: ["100 Markdown pages", "1000 AI generations / month", "Premium Page Editor", "Custom domain support"] ,
+        features: ["100 Markdown pages", "1000 AI generations / month", "Premium Page Editor", "Subdomain support"] ,
         link: (user?.username ? 
             `/plans/pro?redirectUrl=${encodeURIComponent('/create')}` : 
             `/login?redirectUrl=${encodeURIComponent('/plans/pro')}`)

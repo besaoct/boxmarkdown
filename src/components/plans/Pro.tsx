@@ -29,7 +29,7 @@ const ProPlan = ({ user }: { user: any }) => {
         <li>📄 Up to {plans.pro.numberOfPages} Markdown pages</li>
         <li>🔄 {plans.pro.numberOfAIgens} AI generations per month</li>
         <li>✏️ Premium page editing capabilities</li>
-        <li>🌐 Custom domain support</li>
+        <li>🌐 Subdomain support</li>
         <li>🚀 Priority support</li>
       </ul>
 
