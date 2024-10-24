@@ -174,3 +174,12 @@ export function trimExcessiveLineBreaks(text: string): string {
     // Add ellipsis if required
     return ellipsis && plainText.length > length ? `${truncatedString}...` : truncatedString;
   };
+
+
+  export const calculateReadingTime = (content: string): number => {
+    const wordsPerMinute = 150; // Average words read per minute
+    const words = content.split(/\s+/).length; // Count words by splitting on whitespace
+    const minutes = Math.ceil(words / wordsPerMinute); // Round up to the nearest minute
+    return minutes;
+  };
+  

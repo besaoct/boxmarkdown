@@ -13,6 +13,7 @@ import SettingsDialog from "./setting";
 import { ShareButton } from "next-react-share";
 import Info from "../common/info";
 import Markdown from "../common/Markdown";
+import { calculateReadingTime } from "@/lib/utils";
 
 const ManagePage = ({ pageData }: { pageData: PageWithProjectType }) => {
   const [isPublished, setIsPublished] = useState(pageData?.isPublished);
@@ -84,7 +85,13 @@ const ManagePage = ({ pageData }: { pageData: PageWithProjectType }) => {
     return null;
   }
 
-  const info = pageData.publicPageConfig;
+  const readingTime = calculateReadingTime(pageData.content)
+  const info ={ 
+    ...pageData.publicPageConfig,
+    user:pageData.user, 
+    postedAt:pageData.createdAt,
+    readingTime:readingTime,
+  };
 
   return (
     <div className="min-h-screen w-full flex flex-col gap-4">
@@ -170,7 +177,7 @@ const ManagePage = ({ pageData }: { pageData: PageWithProjectType }) => {
         </button>
       </div>
       {/* pageData Header */}
-      <div className="border-b pb-4 flex gap-4 items-start justify-between flex-col w-full overflow-x-auto ">
+      <div className="flex gap-4 items-start justify-between flex-col w-full overflow-x-auto ">
         <div className="flex flex-nowrap whitespace-nowrap gap-4 items-center justify-start  w-full overflow-x-auto">
           {pageData.isPublished && (
             <div className=" whitespace-nowrap">
@@ -222,12 +229,13 @@ const ManagePage = ({ pageData }: { pageData: PageWithProjectType }) => {
           </p>
         </div>
       </div>
+      <div className="w-full bg-white max-w-4xl dark:bg-neutral-900 border lg:p-6 p-4 py-6">
 
       <div className="w-full max-w-4xl flex flex-col gap-4">
         <Info info={info} />
-
         {/* pageData Content */}
         <Markdown>{pageData.content}</Markdown>
+      </div>
       </div>
     </div>
   );

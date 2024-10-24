@@ -4,12 +4,22 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { currentUser } from "@/lib/auth";
 import { getDashboardData } from "@/lib/data";
+import { BASE_DOMAIN } from "@/routes";
 import { Bot, Box, Layers, Plus } from "lucide-react";
+import { headers } from "next/headers";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 
 
 export default async function Home() {
+
+  const headerList = headers()
+  const host = headerList.get('host')!
+  
+  if (host.endsWith(`.${BASE_DOMAIN}`)) {
+    return notFound()
+  }
   const user = await currentUser();
 
   if (!user) {
@@ -38,7 +48,7 @@ export default async function Home() {
   // Data for the summary cards
   const summaryData = [
     { title: "Total Pages", value: pagesData?.length || 0, desc: `${PagesLeft <= 0 ? '0' : PagesLeft} ${currentPlan} pages left`, icon: Layers },
-    { title: "Total AI Generations", value: totalAIGens, desc: `${AiGensLeft <= 0 ? '0' : AiGensLeft} generations left ${aiGenData?.daysLeftCount ? `- renewal in ${aiGenData?.daysLeftCount} days.`:''}`, icon: Bot },
+    { title: "Total AI Generations", value: totalAIGens, desc: `${AiGensLeft <= 0 ? '0' : AiGensLeft} generations left ${aiGenData?.daysLeftCount ? `- renewal in ${30-aiGenData?.durationInDays} days.`:''}`, icon: Bot },
     { title: "Active Projects", value: ActiveProjects?.length || 0, desc: `Of ${projects?.length || 0} total projects`, icon: Box },
   ];
 

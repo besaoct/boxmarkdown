@@ -31,7 +31,14 @@ export const getAIGenData = async()=>{
   }
   try {
     const data = await prisma.aiGen.findFirst({ where: { userId: user.id} });
-    return data;
+    const aiGenCount = Number(data?.count || 0);
+    const startDate = data?.startDate ? new Date(data.startDate) : new Date();
+    // Calculate the number of days since the startDate
+    const currentDate = new Date();
+    const durationInMillis = currentDate.getTime() - startDate.getTime();
+    const durationInDays = Math.floor(durationInMillis / (1000 * 60 * 60 * 24)); // Convert ms to days
+
+    return {...data, durationInDays, aiGenCount};
   } catch {
     return null;
   }
@@ -323,6 +330,8 @@ export const getPublicPage = cache(async ({ slug, projectSlug, username}:{slug: 
             select:{
               name:true,
               username:true,
+              image:true,
+              email:true,
               isBasic:true,
               isPro:true,
               isMember:true,

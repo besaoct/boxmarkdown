@@ -262,6 +262,7 @@ export const editPageConfig = async (
     projectName?: string, 
     externalLink?: string
     toggleDarkmode?: boolean
+    showAuthor?: boolean,
   }
 ) => {
 
@@ -296,6 +297,7 @@ export const editPageConfig = async (
       contactLink: values.contactLink ?? undefined,
       projectName: values.projectName ?? undefined,
       toggleDarkmode: values.toggleDarkmode ?? undefined,
+      showAuthor:  values.showAuthor ?? undefined,
       updatedAt: new Date(),
     },
     create: {
@@ -305,7 +307,8 @@ export const editPageConfig = async (
       contactMail: values.contactMail ?? '',
       contactLink: values.contactLink ?? '',
       projectName: values.projectName ?? '',
-      toggleDarkmode: true,
+      toggleDarkmode: values.toggleDarkmode ??  true,
+      showAuthor: values.showAuthor ?? true,
       updatedAt: new Date(),
     }
   });

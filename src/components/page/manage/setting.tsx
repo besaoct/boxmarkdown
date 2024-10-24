@@ -16,7 +16,8 @@ export default function SettingsDialog({ page, onClose }: any) {
     contactMail: pageConfigData?.contactMail ||  '',
     contactLink: pageConfigData?.contactLink || '',
     projectName: pageConfigData?.projectName ||  '',
-    toggleDarkmode: pageConfigData?.toggleDarkmode || false,
+    toggleDarkmode: pageConfigData?.toggleDarkmode || true,
+    showAuthor: pageConfigData?.showAuthor || true,
   });
 
   const [checkboxStates, setCheckboxStates] = useState({
@@ -25,12 +26,13 @@ export default function SettingsDialog({ page, onClose }: any) {
     contactLink: !!pageConfigData?.contactLink,
     projectName: !!pageConfigData?.projectName,
     toggleDarkmode: !!pageConfigData?.toggleDarkmode,
+    showAuthor: !!pageConfigData?.showAuthor,
   });
 
   // UseEffect to clear form fields when checkboxes are unchecked (except for toggleDarkmode)
   useEffect(() => {
     Object.keys(checkboxStates).forEach((key) => {
-      if (!checkboxStates[key as keyof typeof checkboxStates] && key !== 'toggleDarkmode') {
+      if (!checkboxStates[key as keyof typeof checkboxStates] && key !== 'toggleDarkmode' &&  key !== 'showAuthor') {
         setFormData((prev) => ({
           ...prev,
           [key]: '',
@@ -56,9 +58,15 @@ export default function SettingsDialog({ page, onClose }: any) {
   };
 
   const handleToggleChange = (checked: boolean) => {
-    setFormData((prev) => ({ ...prev, toggleDarkmode: checked }));
+    setFormData((prev) => ({ ...prev, toggleDarkmode: checked}));
     setCheckboxStates((prev) => ({ ...prev, toggleDarkmode: checked }));
   };
+
+  const handleToggleAuthor = (checked: boolean) => {
+    setFormData((prev) => ({ ...prev, showAuthor:checked }));
+    setCheckboxStates((prev) => ({ ...prev,  showAuthor:checked}));
+  };
+
 
   const handleSubmit = async () => {
     startTransition(async () => {
@@ -73,6 +81,28 @@ export default function SettingsDialog({ page, onClose }: any) {
       <div className="p-6 w-full space-y-4 bg-muted max-w-sm">
         <h2 className="text-base font-semibold">Header Configuration</h2>
 
+ {/* show author mode (Switch) */}
+        <div className="flex items-center justify-between">
+          <label htmlFor='showAuthor'>Show Author</label>
+          <label className="relative inline-flex items-center cursor-pointer">
+            <input
+              id='showAuthor'
+              type="checkbox"
+              className="sr-only"
+              checked={checkboxStates.showAuthor}
+              onChange={(e) => handleToggleAuthor(e.target.checked)}
+            />
+            <div
+              className={`w-12 h-7 bg-neutral-400  peer-checked:bg-violet-600 peer peer-focus:ring-violet-600 transition-all`}
+            >
+              <div
+                className={`h-5 w-5 translate-y-1  shadow-md transform transition-transform duration-300 ease-in-out ${
+                  checkboxStates.showAuthor ? 'translate-x-6 bg-neutral-50' : 'translate-x-1 bg-neutral-200 '
+                }`}
+              ></div>
+            </div>
+          </label>
+        </div>
         {/* User Name */}
         <div>
           <label className="flex items-center space-x-2">
@@ -89,7 +119,7 @@ export default function SettingsDialog({ page, onClose }: any) {
               value={formData.displayName || ''}
               onChange={handleChange}
               disabled={!checkboxStates.displayName}
-              placeholder="Enter your display name"
+              placeholder="Enter page display name"
             />
           </label>
         </div>
@@ -159,20 +189,21 @@ export default function SettingsDialog({ page, onClose }: any) {
 
         {/* Toggle Dark Mode (Switch) */}
         <div className="flex items-center justify-between">
-          <span>Show Dark/light Mode</span>
+          <label htmlFor='toggleDarkmode'>Show Dark/light Mode</label>
           <label className="relative inline-flex items-center cursor-pointer">
             <input
+              id='toggleDarkmode'
               type="checkbox"
               className="sr-only"
               checked={checkboxStates.toggleDarkmode}
               onChange={(e) => handleToggleChange(e.target.checked)}
             />
             <div
-              className={`w-11 h-6 bg-neutral-400 rounded-full peer-checked:bg-violet-600 peer peer-focus:ring-violet-600 transition-all`}
+              className={`w-12 h-7 bg-neutral-400  peer-checked:bg-violet-600 peer peer-focus:ring-violet-600 transition-all`}
             >
               <div
-                className={`h-5 w-5 translate-y-0.5 bg-white rounded-full shadow-md transform transition-transform duration-300 ease-in-out ${
-                  checkboxStates.toggleDarkmode ? 'translate-x-5' : 'translate-x-1'
+                className={`h-5 w-5 translate-y-1 shadow-md transform transition-transform duration-300 ease-in-out ${
+                  checkboxStates.toggleDarkmode ? 'translate-x-6 bg-neutral-50' : 'translate-x-1 bg-neutral-200 '
                 }`}
               ></div>
             </div>

@@ -17,6 +17,7 @@ import { createPage } from '@/actions/user/manage-page';
 import { createProject } from '@/actions/user/manage-project';
 import { DialogDescription } from '@radix-ui/react-dialog';
 import { useRouter } from 'next/navigation';
+import Markdown from '../common/Markdown';
 
 // Define TypeScript interfaces for better type safety
 
@@ -434,10 +435,10 @@ const handleSavePage = () => {
             {activeTab === 'preview' && (
 
               <div className='max-h-fit h-full flex flex-col gap-4 justify-start items-start w-full' >
-                <div className={'prose dark:prose-invert w-full max-w-full mt-8'}>
-                <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} className={'w-full'}>
-                  {pageContent} 
-                </ReactMarkdown>
+                <div className={'w-full max-w-full mt-8'}>
+              <Markdown>
+                {pageContent}
+              </Markdown>
                 </div>
                 <Button
                   onClick={handleSavePage}

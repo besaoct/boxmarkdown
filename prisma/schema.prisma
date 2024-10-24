@@ -140,6 +140,7 @@ model publicPageConfig {
     contactLink   String?
     projectName   String?
 
+    showAuthor        Boolean? @default(true)  
     toggleDarkmode    Boolean? @default(true)
 
     createdAt DateTime? @default(now())
